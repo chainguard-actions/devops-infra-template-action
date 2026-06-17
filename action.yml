@@ -1,0 +1,26 @@
+name: GitHub Action template
+author: Krzysztof Szyper / ChristophShyper / shyper.pro
+description: Template repository for GitHub Actions
+inputs:
+  foobar:
+    description: Some input variable
+    required: false
+    default: foobar
+  debug:
+    description: Enable verbose debug logging
+    required: false
+    default: 'false'
+  github_token:
+    description: GitHub token for authenticated calls
+    required: false
+outputs:
+  barfoo:
+    description: Output from action
+  foobar:
+    description: Echo of input 'foobar'
+runs:
+  using: docker
+  image: docker://devopsinfra/template-action@sha256:ae813db4d6146511313ac871c05e90035bab8fdbd0835681e4b03cb8f97d14d2 # v1.0.6
+branding:
+  color: purple
+  icon: upload-cloud
