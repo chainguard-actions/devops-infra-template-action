@@ -1,0 +1,9 @@
+# Exclude
+*
+
+# Include
+!Dockerfile
+!LICENSE
+!README.md
+!entrypoint.sh
+!alpine-packages.txt

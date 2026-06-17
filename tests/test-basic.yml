@@ -1,0 +1,33 @@
+name: Test basic usage with defaults
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          foobar: foobar
+          debug: 'false'
+      - name: Assert foobar output echoes input
+        env:
+          ACTUAL: ${{ steps.action.outputs.foobar }}
+        run: |
+          echo "actual foobar output: $ACTUAL"
+          if [ "$ACTUAL" != "foobar" ]; then
+            echo "FAIL: expected 'foobar' but got '$ACTUAL'"
+            exit 1
+          fi
+          echo "PASS"
+      - name: Assert barfoo output is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.barfoo }}
+        run: |
+          echo "actual barfoo output: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected barfoo output to be non-empty"
+            exit 1
+          fi
+          echo "PASS: barfoo=$ACTUAL"
