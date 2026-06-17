@@ -1,0 +1,33 @@
+name: Test debug mode enabled
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          foobar: debug-test
+          debug: 'true'
+      - name: Assert foobar output echoes input in debug mode
+        env:
+          ACTUAL: ${{ steps.action.outputs.foobar }}
+        run: |
+          echo "actual foobar output: $ACTUAL"
+          if [ "$ACTUAL" != "debug-test" ]; then
+            echo "FAIL: expected 'debug-test' but got '$ACTUAL'"
+            exit 1
+          fi
+          echo "PASS"
+      - name: Assert barfoo output is set in debug mode
+        env:
+          ACTUAL: ${{ steps.action.outputs.barfoo }}
+        run: |
+          echo "actual barfoo output: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected barfoo output to be non-empty in debug mode"
+            exit 1
+          fi
+          echo "PASS: barfoo=$ACTUAL"
