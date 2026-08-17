@@ -1,0 +1,21 @@
+name: (Automatic) Pull Request Create
+
+on:
+  push:
+    branches-ignore:
+      - master
+      - main
+      - release/**
+      - dependabot/**
+
+permissions:
+  contents: read
+  packages: write
+  pull-requests: write
+
+jobs:
+  call:
+    uses: devops-infra/.github/.github/workflows/reusable-auto-pull-request-create.yml@88b425df3a0f0415f12a0678b84d065562363bdc # v1
+    with:
+      profile: actions
+    secrets: inherit

@@ -15,11 +15,14 @@ warn()  { printf "[WARN] ⚠️ %s\n" "$*" >&2; }
 error() { printf "[ERROR] ❌ %s\n" "$*" >&2; }
 
 write_output() {
-  local kv="$1"
+  local key="$1"
+  local value="$2"
+  local safe_value
+  safe_value="$(printf '%s' "${value}" | tr -d '\n\r')"
   if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
-    printf "%s\n" "${kv}" >> "${GITHUB_OUTPUT}"
+    printf "%s\n" "${key}=${safe_value}" >> "${GITHUB_OUTPUT}"
   else
-    info "[LOCAL] output -> ${kv}"
+    info "[LOCAL] output -> ${key}=${safe_value}"
   fi
 }
 
@@ -48,9 +51,8 @@ info "Using input 'foobar' in main action."
 # ... your action logic goes here ...
 
 # Set outputs
-FOOBAR_SAFE="$(printf '%s' "${FOOBAR}" | tr -d '\n\r')"
-write_output "foobar=${FOOBAR_SAFE}"
-write_output "barfoo=${FOOBAR_SAFE}"
+write_output "foobar" "${FOOBAR}"
+write_output "barfoo" "${FOOBAR}"
 
 info "Completed without errors."
 exit ${RET_CODE}

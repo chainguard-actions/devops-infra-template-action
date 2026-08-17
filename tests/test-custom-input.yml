@@ -14,9 +14,9 @@ jobs:
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
-          echo "actual foobar output: $ACTUAL"
+          echo "actual foobar: $ACTUAL"
           if [ "$ACTUAL" != "hello-world" ]; then
             echo "FAIL: expected 'hello-world' but got '$ACTUAL'"
             exit 1
           fi
-          echo "PASS"
+          echo "PASS: foobar output matches custom input"

@@ -1,4 +1,4 @@
-name: Test debug mode enabled
+name: Test github_token input
 on:
   workflow_dispatch:
 jobs:
@@ -9,25 +9,25 @@ jobs:
       - id: action
         uses: .
         with:
-          foobar: debug-test
-          debug: 'true'
-      - name: Assert foobar output echoes input in debug mode
+          foobar: token-test
+          github_token: ${{ github.token }}
+      - name: Assert foobar output echoes input
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
           echo "actual foobar: $ACTUAL"
-          if [ "$ACTUAL" != "debug-test" ]; then
-            echo "FAIL: expected 'debug-test' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "token-test" ]; then
+            echo "FAIL: expected foobar output to be 'token-test', got '$ACTUAL'"
             exit 1
           fi
-          echo "PASS: foobar output matches input in debug mode"
-      - name: Assert barfoo output is present in debug mode
+          echo "PASS"
+      - name: Assert barfoo output is present
         env:
           ACTUAL: ${{ steps.action.outputs.barfoo }}
         run: |
           echo "actual barfoo: $ACTUAL"
           if [ -z "$ACTUAL" ]; then
-            echo "FAIL: expected barfoo output to be non-empty in debug mode"
+            echo "FAIL: expected barfoo output to be non-empty"
             exit 1
           fi
-          echo "PASS: barfoo output is present in debug mode"
+          echo "PASS"
