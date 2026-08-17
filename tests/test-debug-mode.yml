@@ -1,4 +1,4 @@
-name: Test basic usage (default inputs)
+name: Test debug mode enabled
 on:
   workflow_dispatch:
 jobs:
@@ -21,26 +21,28 @@ jobs:
 
       - id: action
         uses: .
-        # No inputs — use all defaults: foobar="foobar", debug="false"
+        with:
+          foobar: debug-test
+          debug: 'true'
 
-      - name: Assert foobar output equals default
+      - name: Assert foobar output is correct in debug mode
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
           echo "actual foobar: $ACTUAL"
-          if [ "$ACTUAL" != "foobar" ]; then
-            echo "FAIL: expected 'foobar' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "debug-test" ]; then
+            echo "FAIL: expected 'debug-test' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
 
-      - name: Assert barfoo output equals default
+      - name: Assert barfoo output is correct in debug mode
         env:
           ACTUAL: ${{ steps.action.outputs.barfoo }}
         run: |
           echo "actual barfoo: $ACTUAL"
-          if [ "$ACTUAL" != "foobar" ]; then
-            echo "FAIL: expected 'foobar' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "debug-test" ]; then
+            echo "FAIL: expected 'debug-test' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"

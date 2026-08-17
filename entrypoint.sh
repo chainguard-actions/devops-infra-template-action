@@ -16,14 +16,12 @@ error() { printf "[ERROR] ❌ %s\n" "$*" >&2; }
 
 write_output() {
   local kv="$1"
-  local key value safe_value
-  key="${kv%%=*}"
-  value="${kv#*=}"
-  safe_value="$(printf '%s' "${value}" | tr -d '\n\r')"
   if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
-    printf "%s=%s\n" "${key}" "${safe_value}" >> "${GITHUB_OUTPUT}"
+    local safe_kv
+    safe_kv=$(printf '%s' "${kv}" | tr -d '\n\r')
+    printf "%s\n" "${safe_kv}" >> "${GITHUB_OUTPUT}"
   else
-    info "[LOCAL] output -> ${key}=${safe_value}"
+    info "[LOCAL] output -> ${kv}"
   fi
 }
 

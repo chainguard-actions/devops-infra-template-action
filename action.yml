@@ -20,7 +20,7 @@ outputs:
     description: Echo of input 'foobar'
 runs:
   using: docker
-  image: docker://devopsinfra/template-action@sha256:ae813db4d6146511313ac871c05e90035bab8fdbd0835681e4b03cb8f97d14d2 # v1.0.6
+  image: docker://devopsinfra/template-action:v1.0.6@sha256:ae813db4d6146511313ac871c05e90035bab8fdbd0835681e4b03cb8f97d14d2
 branding:
   color: purple
   icon: upload-cloud
