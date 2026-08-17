@@ -47,10 +47,10 @@ fi
 info "Using input 'foobar' in main action."
 # ... your action logic goes here ...
 
-# Set outputs
-safe_foobar=$(printf '%s' "${FOOBAR}" | tr -d '\n\r')
-write_output "foobar=${safe_foobar}"
-write_output "barfoo=${safe_foobar}"
+# Set outputs (sanitize inputs to prevent newline injection into $GITHUB_OUTPUT)
+FOOBAR_SAFE="$(printf '%s' "${FOOBAR}" | tr -d '\n\r')"
+write_output "foobar=${FOOBAR_SAFE}"
+write_output "barfoo=${FOOBAR_SAFE}"
 
 info "Completed without errors."
 exit ${RET_CODE}

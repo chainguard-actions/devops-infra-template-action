@@ -9,25 +9,25 @@ jobs:
       - id: action
         uses: .
         with:
-          foobar: debug-test
+          foobar: 'debug-test'
           debug: 'true'
       - name: Assert foobar output echoes input in debug mode
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
-          echo "actual foobar output: $ACTUAL"
+          echo "actual foobar: $ACTUAL"
           if [ "$ACTUAL" != "debug-test" ]; then
             echo "FAIL: expected 'debug-test' but got '$ACTUAL'"
             exit 1
           fi
-          echo "PASS"
-      - name: Assert barfoo output is set in debug mode
+          echo "PASS: foobar output matches input in debug mode"
+      - name: Assert barfoo output is non-empty in debug mode
         env:
           ACTUAL: ${{ steps.action.outputs.barfoo }}
         run: |
-          echo "actual barfoo output: $ACTUAL"
+          echo "actual barfoo: $ACTUAL"
           if [ -z "$ACTUAL" ]; then
-            echo "FAIL: expected barfoo output to be non-empty in debug mode"
+            echo "FAIL: expected barfoo to be non-empty in debug mode"
             exit 1
           fi
-          echo "PASS: barfoo=$ACTUAL"
+          echo "PASS: barfoo output is non-empty in debug mode"

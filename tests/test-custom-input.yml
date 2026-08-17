@@ -9,15 +9,25 @@ jobs:
       - id: action
         uses: .
         with:
-          foobar: my-custom-value
+          foobar: 'hello-world'
           debug: 'false'
       - name: Assert foobar output echoes custom input
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
-          echo "actual foobar output: $ACTUAL"
-          if [ "$ACTUAL" != "my-custom-value" ]; then
-            echo "FAIL: expected 'my-custom-value' but got '$ACTUAL'"
+          echo "actual foobar: $ACTUAL"
+          if [ "$ACTUAL" != "hello-world" ]; then
+            echo "FAIL: expected 'hello-world' but got '$ACTUAL'"
             exit 1
           fi
-          echo "PASS"
+          echo "PASS: foobar output matches custom input"
+      - name: Assert barfoo output is non-empty
+        env:
+          ACTUAL: ${{ steps.action.outputs.barfoo }}
+        run: |
+          echo "actual barfoo: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected barfoo to be non-empty"
+            exit 1
+          fi
+          echo "PASS: barfoo output is non-empty"

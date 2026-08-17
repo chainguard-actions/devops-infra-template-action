@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: "UTC"
+    assignees:
+      - ChristophShyper
+    groups:
+      gha-all:
+        patterns:
+          - "*"
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: "UTC"
+    assignees:
+      - ChristophShyper
+    groups:
+      docker-base-images:
+        patterns:
+          - "*"

@@ -9,15 +9,15 @@ jobs:
       - id: action
         uses: .
         with:
-          foobar: hello-token
-          github_token: fake-token-for-testing
+          foobar: tokentest
+          github_token: ${{ github.token }}
       - name: Assert foobar output echoes input
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
           echo "actual foobar: $ACTUAL"
-          if [ "$ACTUAL" != "hello-token" ]; then
-            echo "FAIL: expected foobar output to be 'hello-token', got '$ACTUAL'"
+          if [ "$ACTUAL" != "tokentest" ]; then
+            echo "FAIL: expected foobar output to be 'tokentest', got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"

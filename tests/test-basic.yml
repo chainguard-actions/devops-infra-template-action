@@ -9,25 +9,24 @@ jobs:
       - id: action
         uses: .
         with:
-          foobar: foobar
           debug: 'false'
-      - name: Assert foobar output echoes input
+      - name: Assert foobar output equals default
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
-          echo "actual foobar output: $ACTUAL"
+          echo "actual foobar: $ACTUAL"
           if [ "$ACTUAL" != "foobar" ]; then
             echo "FAIL: expected 'foobar' but got '$ACTUAL'"
             exit 1
           fi
-          echo "PASS"
-      - name: Assert barfoo output is set
+          echo "PASS: foobar output matches default"
+      - name: Assert barfoo output is non-empty
         env:
           ACTUAL: ${{ steps.action.outputs.barfoo }}
         run: |
-          echo "actual barfoo output: $ACTUAL"
+          echo "actual barfoo: $ACTUAL"
           if [ -z "$ACTUAL" ]; then
-            echo "FAIL: expected barfoo output to be non-empty"
+            echo "FAIL: expected barfoo to be non-empty"
             exit 1
           fi
-          echo "PASS: barfoo=$ACTUAL"
+          echo "PASS: barfoo output is non-empty"
