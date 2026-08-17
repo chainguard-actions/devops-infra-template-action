@@ -16,13 +16,10 @@ error() { printf "[ERROR] ❌ %s\n" "$*" >&2; }
 
 write_output() {
   local kv="$1"
-  # Sanitize: strip embedded newlines/carriage-returns to prevent GITHUB_OUTPUT injection
-  local safe_kv
-  safe_kv="$(printf '%s' "${kv}" | tr -d '\n\r')"
   if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
-    printf "%s\n" "${safe_kv}" >> "${GITHUB_OUTPUT}"
+    printf "%s\n" "${kv}" >> "${GITHUB_OUTPUT}"
   else
-    info "[LOCAL] output -> ${safe_kv}"
+    info "[LOCAL] output -> ${kv}"
   fi
 }
 
@@ -51,8 +48,9 @@ info "Using input 'foobar' in main action."
 # ... your action logic goes here ...
 
 # Set outputs
-write_output "foobar=${FOOBAR}"
-write_output "barfoo=${FOOBAR}"
+SAFE_FOOBAR="$(printf '%s' "${FOOBAR}" | tr -d '\n\r')"
+write_output "foobar=${SAFE_FOOBAR}"
+write_output "barfoo=${SAFE_FOOBAR}"
 
 info "Completed without errors."
 exit ${RET_CODE}

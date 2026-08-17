@@ -1,4 +1,4 @@
-name: Test custom foobar input
+name: Test debug mode enabled
 on:
   workflow_dispatch:
 jobs:
@@ -20,26 +20,27 @@ jobs:
       - id: action
         uses: .
         with:
-          foobar: hello-world
+          foobar: debug-test
+          debug: 'true'
 
-      - name: Assert foobar output equals custom input
+      - name: Assert foobar output is set in debug mode
         env:
           ACTUAL: ${{ steps.action.outputs.foobar }}
         run: |
           echo "actual foobar: $ACTUAL"
-          if [ "$ACTUAL" != "hello-world" ]; then
-            echo "FAIL: expected 'hello-world' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "debug-test" ]; then
+            echo "FAIL: expected 'debug-test' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
 
-      - name: Assert barfoo output equals custom input
+      - name: Assert barfoo output is set in debug mode
         env:
           ACTUAL: ${{ steps.action.outputs.barfoo }}
         run: |
           echo "actual barfoo: $ACTUAL"
-          if [ "$ACTUAL" != "hello-world" ]; then
-            echo "FAIL: expected 'hello-world' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "debug-test" ]; then
+            echo "FAIL: expected 'debug-test' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
