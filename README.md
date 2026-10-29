@@ -6,13 +6,13 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 ## Versions
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v1.0.10 | [`v1.0.10`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.10) | [`6ab1f5d`](https://github.com/devops-infra/template-action/commit/6ab1f5d50b1c18fcf65b53bde76b2021b010adc5) |
-| v1.0.6 | [`v1.0.6`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.6) | [`f118649`](https://github.com/devops-infra/template-action/commit/f11864937a41046e736d2736656c91f6e52b0720) |
-| v1.0.7 | [`v1.0.7`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.7) | [`d9806bd`](https://github.com/devops-infra/template-action/commit/d9806bd8edcb247e976c4b9a8f20b950d53594d2) |
-| v1.0.8 | [`v1.0.8`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.8) | [`c3f35c8`](https://github.com/devops-infra/template-action/commit/c3f35c89048f311ccc4f3df1625de5efb01db3a9) |
-| v1.0.9 | [`v1.0.9`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.9) | [`58d29b5`](https://github.com/devops-infra/template-action/commit/58d29b51df012302b5fba01a04a941890b20db99) |
+| Version | Tag | Upstream commit | Hardening report |
+|---------|-----|-----------------|------------------|
+| v1.0.10 | [`v1.0.10`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.10) | [`6ab1f5d`](https://github.com/devops-infra/template-action/commit/6ab1f5d50b1c18fcf65b53bde76b2021b010adc5) | [`HARDENING.md`](https://github.com/chainguard-actions/devops-infra-template-action/blob/v1.0.10/HARDENING.md) |
+| v1.0.6 | [`v1.0.6`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.6) | [`f118649`](https://github.com/devops-infra/template-action/commit/f11864937a41046e736d2736656c91f6e52b0720) | [`HARDENING.md`](https://github.com/chainguard-actions/devops-infra-template-action/blob/v1.0.6/HARDENING.md) |
+| v1.0.7 | [`v1.0.7`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.7) | [`d9806bd`](https://github.com/devops-infra/template-action/commit/d9806bd8edcb247e976c4b9a8f20b950d53594d2) | [`HARDENING.md`](https://github.com/chainguard-actions/devops-infra-template-action/blob/v1.0.7/HARDENING.md) |
+| v1.0.8 | [`v1.0.8`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.8) | [`c3f35c8`](https://github.com/devops-infra/template-action/commit/c3f35c89048f311ccc4f3df1625de5efb01db3a9) | [`HARDENING.md`](https://github.com/chainguard-actions/devops-infra-template-action/blob/v1.0.8/HARDENING.md) |
+| v1.0.9 | [`v1.0.9`](https://github.com/chainguard-actions/devops-infra-template-action/tree/v1.0.9) | [`58d29b5`](https://github.com/devops-infra/template-action/commit/58d29b51df012302b5fba01a04a941890b20db99) | [`HARDENING.md`](https://github.com/chainguard-actions/devops-infra-template-action/blob/v1.0.9/HARDENING.md) |
 
 ## Privacy
 
